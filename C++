@@ -1,0 +1,120 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+int main() {
+
+    // PASO 1: Inicializar los vectores
+    vector<string> productos = {
+        "Arroz",
+        "Leche",
+        "Pan",
+        "Cafe",
+        "Azucar"
+    };
+
+    vector<float> precios = {
+        65.50,
+        80.00,
+        45.00,
+        150.00,
+        75.00
+    };
+
+    // Mostrar primero los 5 productos iniciales
+    cout << "===== PRODUCTOS INICIALES =====" << endl;
+
+    for (int i = 0; i < productos.size(); i++) {
+        cout << productos.at(i) << " - RD$ "
+             << precios.at(i) << endl;
+    }
+
+
+    // PASO 2: Agregar un nuevo producto
+    string nuevoProducto;
+    float nuevoPrecio;
+
+    cout << "\n===== AGREGAR PRODUCTO =====" << endl;
+
+    cout << "Ingrese el nuevo producto: ";
+    cin >> nuevoProducto;
+
+    cout << "Ingrese el precio: ";
+    cin >> nuevoPrecio;
+
+    productos.push_back(nuevoProducto);
+    precios.push_back(nuevoPrecio);
+
+
+    // PASO 3: Recorrer los vectores
+    cout << "\n===== INVENTARIO =====" << endl;
+
+    for (int i = 0; i < productos.size(); i++) {
+        cout << productos.at(i) << " - RD$ "
+             << precios.at(i) << endl;
+    }
+
+
+    // PASO 4: Eliminar un producto
+    int posicion;
+
+    cout << "\nIngrese la posicion del producto a eliminar: ";
+    cin >> posicion;
+
+    if (posicion >= 0 && posicion < productos.size()) {
+
+        cout << "Producto seleccionado: "
+             << productos.at(posicion) << endl;
+
+        productos.erase(productos.begin() + posicion);
+        precios.erase(precios.begin() + posicion);
+
+        cout << "Producto eliminado correctamente." << endl;
+
+    } else {
+        cout << "Posicion invalida." << endl;
+    }
+
+
+    // Mostrar inventario actualizado
+    cout << "\n===== INVENTARIO ACTUALIZADO =====" << endl;
+
+    for (int i = 0; i < productos.size(); i++) {
+        cout << productos.at(i) << " - RD$ "
+             << precios.at(i) << endl;
+    }
+
+
+    // PASO 5: Calcular precio promedio
+    float suma = 0;
+
+    for (int i = 0; i < precios.size(); i++) {
+        suma = suma + precios.at(i);
+    }
+
+    float promedio = suma / precios.size();
+
+    cout << "\nPrecio promedio: RD$ "
+         << promedio << endl;
+
+
+    // PASO 6: Determinar producto de mayor precio
+    int mayor = 0;
+
+    for (int i = 1; i < precios.size(); i++) {
+
+        if (precios.at(i) > precios.at(mayor)) {
+            mayor = i;
+        }
+    }
+
+    cout << "Producto de mayor precio: "
+         << productos.at(mayor)
+         << " - RD$ "
+         << precios.at(mayor) << endl;
+
+
+    return 0;
+}

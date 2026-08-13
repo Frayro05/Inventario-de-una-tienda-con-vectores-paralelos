@@ -1,0 +1,111 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+using namespace std;
+
+struct Producto {
+    string nombre;
+    float precio;
+};
+
+int main() {
+
+    vector<Producto> inventario;
+
+    // PASO 1: Crear 4 productos
+
+    Producto p1;
+    p1.nombre = "Cuaderno";
+    p1.precio = 45.50;
+    inventario.push_back(p1);
+
+    Producto p2;
+    p2.nombre = "Lapiz";
+    p2.precio = 15.00;
+    inventario.push_back(p2);
+
+    Producto p3;
+    p3.nombre = "Mochila";
+    p3.precio = 850.00;
+    inventario.push_back(p3);
+
+    Producto p4;
+    p4.nombre = "Borrador";
+    p4.precio = 20.00;
+    inventario.push_back(p4);
+
+
+    // PASO 2: Mostrar los productos
+
+    cout << "===== INVENTARIO =====" << endl;
+
+    for (Producto p : inventario) {
+        cout << p.nombre << " - RD$ " << p.precio << endl;
+    }
+
+
+    // PASO 3: Modificar el precio por indice
+
+    int posicion;
+    float nuevoPrecio;
+
+    cout << endl;
+    cout << "Ingrese la posicion del producto que desea modificar: ";
+    cin >> posicion;
+
+    if (posicion >= 0 && posicion < inventario.size()) {
+
+        cout << "Producto: "
+             << inventario[posicion].nombre << endl;
+
+        cout << "Ingrese el nuevo precio: ";
+        cin >> nuevoPrecio;
+
+        inventario[posicion].precio = nuevoPrecio;
+
+        cout << "Precio modificado correctamente." << endl;
+
+    } else {
+
+        cout << "Posicion invalida." << endl;
+    }
+
+
+    // PASO 4: Calcular el precio promedio
+
+    float suma = 0;
+
+    for (Producto p : inventario) {
+        suma = suma + p.precio;
+    }
+
+    float promedio = suma / inventario.size();
+
+    cout << endl;
+    cout << "Precio promedio: RD$ " << promedio << endl;
+
+
+    // PASO 5: Usar at() para acceder de forma segura
+
+    int posicionAt;
+
+    cout << endl;
+    cout << "Ingrese una posicion para consultar: ";
+    cin >> posicionAt;
+
+    if (posicionAt >= 0 && posicionAt < inventario.size()) {
+
+        cout << "Producto: "
+             << inventario.at(posicionAt).nombre << endl;
+
+        cout << "Precio: RD$ "
+             << inventario.at(posicionAt).precio << endl;
+
+    } else {
+
+        cout << "Posicion invalida." << endl;
+    }
+
+    return 0;
+}
